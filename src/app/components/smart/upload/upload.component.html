@@ -1,10 +1,16 @@
-<clr-modal [(clrModalOpen)]="open">
-  <h3 class="modal-title">Upload Cluster Service Version</h3>
-  <div class="modal-body">
-    <p>But not much to say...</p>
+<div class="clr-row">
+  <div class="clr-col-12">
+    <form clrForm [formGroup]="form">
+      <clr-input-container>
+        <label>Cluster Service Version</label>
+        <input #file clrInput type="file" name="csv" (change)="onFileChange(file.files)"/>
+      </clr-input-container>
+    </form>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="open = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="open = false">Ok</button>
+</div>
+
+<div class="clr-row preview" *ngIf="preview.length > 0">
+  <div class="col-col-12">
+    <pre>{{ preview }}</pre>
   </div>
-</clr-modal>
+</div>

@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-upload',
@@ -6,26 +7,33 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  openValue = false;
+  form: FormGroup;
 
-  @Input()
-  get open() {
-    return this.openValue;
-  }
+  preview = '';
 
-  set open(val) {
-    this.openValue = val;
-    this.openChange.emit(this.openValue);
-  }
-
-  @Output()
-  openChange = new EventEmitter();
-
-
-  constructor() {
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      csv: ['']
+    });
   }
 
+  onFileChange(files: FileList) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const mimeType = files[0].type;
+    console.log(mimeType);
+    if (mimeType !== 'application/x-yaml') {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsBinaryString(files[0]);
+    reader.onload = () => {
+      this.preview = reader.result as string;
+    };
+  }
 }
