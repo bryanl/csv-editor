@@ -10,7 +10,7 @@ import { defaultCSV } from '../../../models/fixtures';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private csv: ClusterServiceVersion;
+  csv: ClusterServiceVersion;
 
   constructor(private manager: ManagerService, private router: Router) {}
 
