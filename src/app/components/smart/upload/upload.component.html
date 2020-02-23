@@ -1,16 +1,32 @@
 <div class="clr-row">
   <div class="clr-col-12">
-    <form clrForm [formGroup]="form">
-      <clr-input-container>
-        <label>Cluster Service Version</label>
-        <input #file clrInput type="file" name="csv" (change)="onFileChange(file.files)"/>
-      </clr-input-container>
-    </form>
+    <div class="card">
+      <div class="card-header">
+        Upload Cluster Service Version YAML
+      </div>
+      <div class="card-block">
+        <div class="alert alert-danger alert-sm" *ngIf="error.length > 0">
+          <div class="alert-item static">
+            <span class="alert-text">
+              {{ error }}
+            </span>
+          </div>
+        </div>
+        <div class="card-text">
+          <form clrForm [formGroup]="form" clrLayout="vertical">
+            <clr-input-container>
+              <label>Cluster Service Version</label>
+              <input #file clrInput type="file" name="csv" (change)="onFileChange(file.files)"/>
+            </clr-input-container>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="clr-row preview" *ngIf="preview.length > 0">
   <div class="col-col-12">
-    <pre>{{ preview }}</pre>
+    <pre><code>{{ preview }}</code></pre>
   </div>
 </div>

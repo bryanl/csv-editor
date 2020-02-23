@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ManagerService } from '../../../services/manager/manager.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private manager: ManagerService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const current = this.manager.clusterServiceVersion.getValue();
+    if (!current) {
+      this.router.navigate(['/upload']);
+    }
+  }
 }
