@@ -31,7 +31,7 @@
     </app-overview-detail>
 
     <app-overview-detail name="Created At">
-      created at
+      {{csv.metadata.annotations.createdAt}}
     </app-overview-detail>
 
     <app-overview-detail name="Maintainers">
@@ -39,7 +39,7 @@
     </app-overview-detail>
 
     <app-overview-detail name="Categories">
-      categories
+      <app-categories-list [source]="csv.metadata.annotations.categories"></app-categories-list>
     </app-overview-detail>
   </div>
 </div>

@@ -16,6 +16,7 @@ import { OverviewDetailComponent } from './components/presentation/overview-deta
 import { CapabilityLevelComponent } from './components/presentation/capability-level/capability-level.component';
 import { LinkListComponent } from './components/presentation/link-list/link-list.component';
 import { MaintainerListComponent } from './components/presentation/maintainer-list/maintainer-list.component';
+import { CategoriesListComponent } from './components/presentation/categories-list/categories-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MaintainerListComponent } from './components/presentation/maintainer-li
     OverviewDetailComponent,
     CapabilityLevelComponent,
     LinkListComponent,
-    MaintainerListComponent
+    MaintainerListComponent,
+    CategoriesListComponent
   ],
   imports: [
     BrowserModule,

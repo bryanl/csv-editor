@@ -47,9 +47,10 @@ function generateLevels(current: string): Level[] {
   let found = true;
 
   return knownLevels.map(l => {
+    const o = { name: l, isFulfilled: found };
     if (current === l) {
       found = false;
     }
-    return { name: l, isFulfilled: found };
+    return o;
   });
 }
