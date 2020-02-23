@@ -1,0 +1,11 @@
+<ul>
+  <li *ngFor="let maintainer of maintainers; trackBy: trackByFn">
+    <p>{{maintainer.name}}</p>
+    <p>
+      <a [href]="'mailto:'+maintainer.email">
+        {{maintainer.email}}
+        <clr-icon shape="envelope" size="12"></clr-icon>
+      </a>
+    </p>
+  </li>
+</ul>

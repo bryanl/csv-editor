@@ -168,7 +168,7 @@ interface GroupVersionKind {
   kind: string;
 }
 
-interface Maintainer {
+export interface Maintainer {
   name: string;
   email: string;
 }

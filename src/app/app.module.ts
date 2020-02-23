@@ -15,6 +15,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { OverviewDetailComponent } from './components/presentation/overview-detail/overview-detail.component';
 import { CapabilityLevelComponent } from './components/presentation/capability-level/capability-level.component';
 import { LinkListComponent } from './components/presentation/link-list/link-list.component';
+import { MaintainerListComponent } from './components/presentation/maintainer-list/maintainer-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LinkListComponent } from './components/presentation/link-list/link-list
     OverviewComponent,
     OverviewDetailComponent,
     CapabilityLevelComponent,
-    LinkListComponent
+    LinkListComponent,
+    MaintainerListComponent
   ],
   imports: [
     BrowserModule,

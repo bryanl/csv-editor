@@ -20,7 +20,10 @@
     </app-overview-detail>
 
     <app-overview-detail name="Repository">
-      repository
+      <a [href]="csv.metadata.annotations.repository" target="_blank">
+        {{csv.metadata.annotations.repository}}
+        <clr-icon shape="link" [attr.size]="12"></clr-icon>
+      </a>
     </app-overview-detail>
 
     <app-overview-detail name="Container Image">
@@ -32,7 +35,7 @@
     </app-overview-detail>
 
     <app-overview-detail name="Maintainers">
-      maintainers
+      <app-maintainer-list [maintainers]="csv.spec.maintainers"></app-maintainer-list>
     </app-overview-detail>
 
     <app-overview-detail name="Categories">
