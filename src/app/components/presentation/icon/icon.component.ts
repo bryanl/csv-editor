@@ -5,13 +5,16 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-icon',
   template: `
-    <img [src]="src()" />
+    <img [src]="src()" [ngStyle]="{ height: height, width: width }" />
   `,
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
-  @Input()
-  icons: Icon[];
+  @Input() icons: Icon[];
+
+  @Input() height = '80px';
+
+  @Input() width = '80px';
 
   constructor(private sanitizer: DomSanitizer) {}
 
