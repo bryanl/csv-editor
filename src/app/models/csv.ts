@@ -1,27 +1,40 @@
 const csvAPIVersion = 'operators.coreos.com/v1alpha1';
 const csvKind = 'ClusterServiceVersion';
 
-export interface ClusterServiceVersion {
+interface ObjectMeta {
+  metadata: {
+    name: string;
+    generateName?: string;
+    namespace?: string;
+    labels?: { [key: string]: string };
+    annotations?: { [key: string]: string };
+  };
+}
+
+interface TypeMeta {
   kind: string;
   apiVersion: string;
+}
+
+export interface ClusterServiceVersion extends ObjectMeta, TypeMeta {
   spec: ClusterServiceVersionSpec;
 }
 
 interface ClusterServiceVersionSpec {
-  installStrategy: NamedInstallStrategy;
-  version: OperatorVersion;
+  install: NamedInstallStrategy;
+  version: string;
   maturity: string;
   customresourcedefinitions: CustomResourceDefinitions;
-  apiservicedefinitions: APIServiceDefinitions;
-  nativeAPIs: GroupVersionKind[];
-  minKubeVersion: string;
+  apiservicedefinitions?: APIServiceDefinitions;
+  nativeAPIs?: GroupVersionKind[];
+  minKubeVersion?: string;
   displayName: string;
   description: string;
   keywords: string[];
-  maintainers: Maintainer;
+  maintainers: Maintainer[];
   provider: AppLink;
-  Links: AppLink;
-  Icon: Icon[];
+  links: AppLink[];
+  icon: Icon[];
   installModes?: InstallMode[];
   replaces?: string;
   labels?: { [key: string]: string };
@@ -30,14 +43,14 @@ interface ClusterServiceVersionSpec {
 }
 
 interface NamedInstallStrategy {
-  strategyName: string;
-  StrategySpec: StrategyDetailsDeployment;
+  strategy: string;
+  spec: StrategyDetailsDeployment;
 }
 
 interface StrategyDetailsDeployment {
-  deploymentSpecs: StrategyDeploymentSpec[];
-  permissions: StrategyDeploymentPermissions[];
-  clusterPermission: StrategyDeploymentPermissions[];
+  deployments: StrategyDeploymentSpec[];
+  permissions?: StrategyDeploymentPermissions[];
+  clusterPermissions?: StrategyDeploymentPermissions[];
 }
 
 interface StrategyDeploymentPermissions {
@@ -47,15 +60,25 @@ interface StrategyDeploymentPermissions {
 
 interface PolicyRule {
   verbs: string[];
-  apiGroups?: string;
-  resources?: string;
-  resourceNames?: string;
+  apiGroups?: string[];
+  resources?: string[];
+  resourceNames?: string[];
   nonResourceURLS?: string;
 }
 
 interface StrategyDeploymentSpec {
-  strategyName: string;
-  strategySpec: StrategyDetailsDeployment;
+  name: string;
+  spec: DeploymentSpec;
+}
+
+interface DeploymentSpec {
+  replicas: number;
+  selector: LabelSelector;
+  template: PodTemplateSpec;
+}
+
+interface PodTemplateSpec extends ObjectMeta {
+  spec: any;
 }
 
 interface OperatorVersion {
@@ -74,23 +97,24 @@ interface PRVersion {
 
 interface CustomResourceDefinitions {
   owned: CRDDescription[];
-  required: CRDDescription[];
+  required?: CRDDescription[];
 }
 
 interface CRDDescription {
   name: string;
+  group?: string;
   version: string;
   kind: string;
   displayName: string;
   description: string;
   resources: APIResourceReference[];
-  statusDescriptors: StatusDescriptor[];
+  statusDescriptors?: StatusDescriptor[];
   specDescriptors: SpecDescriptor[];
-  actionDescriptor: ActionDescriptor[];
+  actionDescriptor?: ActionDescriptor[];
 }
 
 interface APIResourceReference {
-  name: string;
+  name?: string;
   kind: string;
   version: string;
 }
@@ -108,7 +132,7 @@ interface SpecDescriptor {
   displayName: string;
   description: string;
   'x-descriptors': string[];
-  value: any;
+  value?: any;
 }
 
 interface ActionDescriptor {
@@ -135,7 +159,7 @@ interface APIServiceDescription {
 
 interface APIServiceDefinitions {
   owned: APIServiceDescription[];
-  required: APIServiceDescription[];
+  required?: APIServiceDescription[];
 }
 
 interface GroupVersionKind {
@@ -151,12 +175,12 @@ interface Maintainer {
 
 interface AppLink {
   name: string;
-  url: string;
+  url?: string;
 }
 
-interface Icon {
-  data: string;
-  mediaType: string;
+export interface Icon {
+  base64data: string;
+  mediatype: string;
 }
 
 enum InstallModeType {
@@ -167,7 +191,7 @@ enum InstallModeType {
 }
 
 interface InstallMode {
-  type: InstallModeType;
+  type: string;
   supported: boolean;
 }
 
@@ -194,7 +218,7 @@ export function checkClusterServiceVersion(
 ): boolean {
   if (csv.apiVersion !== csvAPIVersion) {
     return false;
-  } else if (csv.kind != csvKind) {
+  } else if (csv.kind !== csvKind) {
     return false;
   }
 

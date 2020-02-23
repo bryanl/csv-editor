@@ -9,18 +9,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/smart/home/home.component';
 import { PageNotFoundComponent } from './components/smart/page-not-found/page-not-found.component';
+import { InlineSVGModule } from 'ng-inline-svg';
+import { IconComponent } from './components/presentation/icon/icon.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ClarityModule,
+    HttpClientModule,
+    InlineSVGModule.forRoot(),
     ReactiveFormsModule,
 
     AppRoutingModule
