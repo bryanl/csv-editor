@@ -12,6 +12,8 @@ import { PageNotFoundComponent } from './components/smart/page-not-found/page-no
 import { IconComponent } from './components/presentation/icon/icon.component';
 import { OverviewComponent } from './components/smart/overview/overview.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { OverviewDetailComponent } from './components/presentation/overview-detail/overview-detail.component';
+import { CapabilityLevelComponent } from './components/presentation/capability-level/capability-level.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { MarkdownModule } from 'ngx-markdown';
     HomeComponent,
     PageNotFoundComponent,
     IconComponent,
-    OverviewComponent
+    OverviewComponent,
+    OverviewDetailComponent,
+    CapabilityLevelComponent
   ],
   imports: [
     BrowserModule,

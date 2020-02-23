@@ -1,0 +1,24 @@
+.capability{
+  list-style-type: none;
+
+  .indicator {
+    margin-right: 8px;
+  }
+
+  li {
+    margin-bottom: 0;
+  }
+
+  li::before {
+    display: inline-block;
+    width: 1px;
+    content: '';
+  }
+
+  li:not(:last-child):before {
+    display: inline-block;
+    border-left: 1px solid black;
+    height: 13px;
+    transform: translate(6px, 15px);
+  }
+}

@@ -1,0 +1,9 @@
+<ul class="capability">
+  <li *ngFor="let level of levels; trackBy: trackByFn">
+    <span class="indicator">
+      <clr-icon class='' [attr.shape]="iconShape(level.isFulfilled)" [attr.size]="12"></clr-icon>
+    </span>
+    <span class="name">{{ level.name }}</span>
+  </li>
+</ul>
+
