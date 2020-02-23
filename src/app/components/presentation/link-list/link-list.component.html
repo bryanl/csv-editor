@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let link of links; trackBy: trackByFn">
+    <a [href]="link.url" target="_blank">
+      {{link.name}}
+      <clr-icon shape="link" [attr.size]="12"></clr-icon>
+    </a>
+  </li>
+</ul>

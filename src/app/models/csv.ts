@@ -173,7 +173,7 @@ interface Maintainer {
   email: string;
 }
 
-interface AppLink {
+export interface AppLink {
   name: string;
   url?: string;
 }

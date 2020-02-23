@@ -14,6 +14,7 @@ import { OverviewComponent } from './components/smart/overview/overview.componen
 import { MarkdownModule } from 'ngx-markdown';
 import { OverviewDetailComponent } from './components/presentation/overview-detail/overview-detail.component';
 import { CapabilityLevelComponent } from './components/presentation/capability-level/capability-level.component';
+import { LinkListComponent } from './components/presentation/link-list/link-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CapabilityLevelComponent } from './components/presentation/capability-l
     IconComponent,
     OverviewComponent,
     OverviewDetailComponent,
-    CapabilityLevelComponent
+    CapabilityLevelComponent,
+    LinkListComponent
   ],
   imports: [
     BrowserModule,
